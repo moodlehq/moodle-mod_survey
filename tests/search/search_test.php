@@ -25,7 +25,7 @@
  * @license http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-defined('MOODLE_INTERNAL') || die();
+namespace mod_survey\search;
 
 /**
  * Unit test for mod_survey searching.
@@ -37,7 +37,7 @@ defined('MOODLE_INTERNAL') || die();
  * @copyright 2017 The Open University
  * @license http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
-class mod_survey_search_testcase extends advanced_testcase {
+class search_test extends \advanced_testcase {
 
     /**
      * Test survey_view
@@ -49,7 +49,7 @@ class mod_survey_search_testcase extends advanced_testcase {
         $this->resetAfterTest();
 
         require_once($CFG->dirroot . '/search/tests/fixtures/testable_core_search.php');
-        testable_core_search::instance();
+        \testable_core_search::instance();
         $area = \core_search\manager::get_search_area('mod_survey-activity');
 
         // Setup test data.
@@ -65,10 +65,10 @@ class mod_survey_search_testcase extends advanced_testcase {
         $rs->close();
 
         // Test specific context and course context.
-        $rs = $area->get_document_recordset(0, context_module::instance($survey1->cmid));
+        $rs = $area->get_document_recordset(0, \context_module::instance($survey1->cmid));
         $this->assertEquals(1, iterator_count($rs));
         $rs->close();
-        $rs = $area->get_document_recordset(0, context_course::instance($course->id));
+        $rs = $area->get_document_recordset(0, \context_course::instance($course->id));
         $this->assertEquals(2, iterator_count($rs));
         $rs->close();
     }

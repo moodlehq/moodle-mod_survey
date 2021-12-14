@@ -22,7 +22,7 @@
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-defined('MOODLE_INTERNAL') || die();
+namespace mod_survey\event;
 
 /**
  * Events tests class.
@@ -31,7 +31,7 @@ defined('MOODLE_INTERNAL') || die();
  * @copyright  2014 Rajesh Taneja <rajesh@moodle.com>
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
-class mod_survey_events_testcase extends advanced_testcase {
+class events_test extends \advanced_testcase {
 
     /**
      * Setup.
@@ -52,7 +52,7 @@ class mod_survey_events_testcase extends advanced_testcase {
 
         $params = array(
             'objectid' => $survey->id,
-            'context' => context_module::instance($survey->cmid),
+            'context' => \context_module::instance($survey->cmid),
             'courseid' => $course->id,
             'other' => array('type' => 'xls')
         );
@@ -67,9 +67,9 @@ class mod_survey_events_testcase extends advanced_testcase {
 
         // Checking that the event contains the expected values.
         $this->assertInstanceOf('\mod_survey\event\report_downloaded', $event);
-        $this->assertEquals(context_module::instance($survey->cmid), $event->get_context());
+        $this->assertEquals(\context_module::instance($survey->cmid), $event->get_context());
         $this->assertEquals($survey->id, $event->objectid);
-        $url = new moodle_url('/mod/survey/download.php', array('id' => $survey->cmid, 'type' => 'xls'));
+        $url = new \moodle_url('/mod/survey/download.php', array('id' => $survey->cmid, 'type' => 'xls'));
         $expected = array($course->id, "survey", "download", $url->out(), $survey->id, $survey->cmid);
         $this->assertEventLegacyLogData($expected, $event);
         $this->assertEventContextNotUsed($event);
@@ -87,7 +87,7 @@ class mod_survey_events_testcase extends advanced_testcase {
 
         $params = array(
             'objectid' => $survey->id,
-            'context' => context_module::instance($survey->cmid),
+            'context' => \context_module::instance($survey->cmid),
             'courseid' => $course->id
         );
         $event = \mod_survey\event\report_viewed::create($params);
@@ -101,7 +101,7 @@ class mod_survey_events_testcase extends advanced_testcase {
 
         // Checking that the event contains the expected values.
         $this->assertInstanceOf('\mod_survey\event\report_viewed', $event);
-        $this->assertEquals(context_module::instance($survey->cmid), $event->get_context());
+        $this->assertEquals(\context_module::instance($survey->cmid), $event->get_context());
         $this->assertEquals($survey->id, $event->objectid);
         $expected = array($course->id, "survey", "view report", 'report.php?id=' . $survey->cmid, $survey->id, $survey->cmid);
         $this->assertEventLegacyLogData($expected, $event);
@@ -119,7 +119,7 @@ class mod_survey_events_testcase extends advanced_testcase {
         $survey = $this->getDataGenerator()->create_module('survey', array('course' => $course->id));
 
         $params = array(
-            'context' => context_module::instance($survey->cmid),
+            'context' => \context_module::instance($survey->cmid),
             'courseid' => $course->id,
             'other' => array('surveyid' => $survey->id)
         );
@@ -134,7 +134,7 @@ class mod_survey_events_testcase extends advanced_testcase {
 
         // Checking that the event contains the expected values.
         $this->assertInstanceOf('\mod_survey\event\response_submitted', $event);
-        $this->assertEquals(context_module::instance($survey->cmid), $event->get_context());
+        $this->assertEquals(\context_module::instance($survey->cmid), $event->get_context());
         $this->assertEquals($survey->id, $event->other['surveyid']);
         $expected = array($course->id, "survey", "submit", 'view.php?id=' . $survey->cmid, $survey->id, $survey->cmid);
         $this->assertEventLegacyLogData($expected, $event);

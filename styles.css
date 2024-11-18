@@ -40,3 +40,12 @@
     vertical-align: top;
     white-space: nowrap;
 }
+
+/** Styles taken from Boost theme when moving the plugin out of Moodle core **/
+
+.path-mod-survey .surveytable > tbody > tr:nth-of-type(even) {
+    background-color: rgba(0, 0, 0, 0.03);
+}
+.path-mod-survey .surveytable .rblock label {
+    text-align: center;
+}

@@ -1,6 +1,17 @@
 
 # Survey Plugin Documentation for Moodle 5.0
 
+> **This plugin has been archived and is no longer actively maintained.**  
+> We encourage interested community members to take part in the [Moodle Plugin Adoption Program Forum](https://moodle.org/mod/forum/discuss.php?d=260354) or [Moodle Plugin Adoption Program](https://moodle.org/plugins/adoption)  if they wish to continue developing or maintaining this plugin.
+
+---
+
+**Why is this plugin archived?**
+
+- This repository is archived because it is no longer actively maintained.
+
+## About the Survey plugin
+- Starting with **Moodle 5.0**, the functionality provided by this plugin is no longer part of Moodle’s core distribution.
 > **⚠️ Important Notice**: The Survey plugin is scheduled for removal in future Moodle releases. Educators are encouraged to explore alternative tools for similar functionalities. For more details, refer to the [Survey Tool Deprecation discussion](https://moodle.org/mod/forum/discuss.php?d=405646).
 
 The Survey plugin provides educators with pre-defined survey instruments, such as COLLES (Constructivist On-Line Learning Environment Survey) and ATTLS (Attitudes to Thinking and Learning Survey), to assess and enhance learning experiences within Moodle courses.
